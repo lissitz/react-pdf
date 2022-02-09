@@ -77,6 +77,7 @@ export class PageInternal extends PureComponent {
     const {
       canvasBackground,
       customTextRenderer,
+      enhanceTextSelection,
       onGetAnnotationsError,
       onGetAnnotationsSuccess,
       onGetTextError,
@@ -85,6 +86,8 @@ export class PageInternal extends PureComponent {
       onRenderAnnotationLayerSuccess,
       onRenderError,
       onRenderSuccess,
+      onRenderTextLayerError,
+      onRenderTextLayerSuccess,
       renderForms,
       renderInteractiveForms,
     } = this.props;
@@ -92,6 +95,7 @@ export class PageInternal extends PureComponent {
     return {
       canvasBackground,
       customTextRenderer,
+      enhanceTextSelection,
       onGetAnnotationsError,
       onGetAnnotationsSuccess,
       onGetTextError,
@@ -100,6 +104,8 @@ export class PageInternal extends PureComponent {
       onRenderAnnotationLayerSuccess,
       onRenderError,
       onRenderSuccess,
+      onRenderTextLayerError,
+      onRenderTextLayerSuccess,
       page,
       renderForms: renderForms ?? renderInteractiveForms, // For backward compatibility
       rotate: this.rotate,
@@ -373,6 +379,7 @@ PageInternal.propTypes = {
   children: PropTypes.node,
   className: isClassName,
   customTextRenderer: PropTypes.func,
+  enhanceTextSelection: PropTypes.bool,
   error: isFunctionOrNode,
   height: PropTypes.number,
   imageResourcesPath: PropTypes.string,
@@ -385,6 +392,8 @@ PageInternal.propTypes = {
   onLoadSuccess: PropTypes.func,
   onRenderError: PropTypes.func,
   onRenderSuccess: PropTypes.func,
+  onRenderTextLayerError: PropTypes.func,
+  onRenderTextLayerSuccess: PropTypes.func,
   pageIndex: isPageIndex,
   pageNumber: isPageNumber,
   pdf: isPdf,
