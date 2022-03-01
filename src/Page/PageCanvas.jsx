@@ -8,7 +8,7 @@ import PageContext from '../PageContext';
 
 import { getPixelRatio, isCancelException, makePageCallback } from '../shared/utils';
 
-import { isPage, isRef, isRotate } from '../shared/propTypes';
+import { isPage, isRef, isRotate, isTransform } from '../shared/propTypes';
 
 const ANNOTATION_MODE = pdfjs.AnnotationMode;
 
@@ -95,7 +95,7 @@ export class PageCanvasInternal extends PureComponent {
     }
 
     const { renderViewport, viewport } = this;
-    const { canvasBackground, page, renderForms } = this.props;
+    const { canvasBackground, page, renderForms, transform } = this.props;
 
     canvas.width = renderViewport.width;
     canvas.height = renderViewport.height;
@@ -108,6 +108,7 @@ export class PageCanvasInternal extends PureComponent {
       get canvasContext() {
         return canvas.getContext('2d');
       },
+      transform: transform ? transform({ width: canvas.width, height: canvas.height }) : undefined,
       viewport: renderViewport,
     };
     if (canvasBackground) {
@@ -150,6 +151,7 @@ PageCanvasInternal.propTypes = {
   renderForms: PropTypes.bool,
   rotate: isRotate,
   scale: PropTypes.number.isRequired,
+  transform: isTransform,
 };
 
 export default function PageCanvas(props) {

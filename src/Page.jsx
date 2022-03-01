@@ -27,6 +27,7 @@ import {
   isRef,
   isRenderMode,
   isRotate,
+  isTransform,
 } from './shared/propTypes';
 
 const defaultScale = 1;
@@ -103,6 +104,7 @@ export class PageInternal extends PureComponent {
       page,
       renderForms: renderForms ?? renderInteractiveForms, // For backward compatibility
       rotate: this.rotate,
+      transform: this.props.transform,
       scale: this.scale,
     };
   }
@@ -395,6 +397,7 @@ PageInternal.propTypes = {
   renderMode: isRenderMode,
   renderTextLayer: PropTypes.bool,
   rotate: isRotate,
+  transform: isTransform,
   scale: PropTypes.number,
   unregisterPage: PropTypes.func,
   width: PropTypes.number,
